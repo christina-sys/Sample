@@ -1,0 +1,73 @@
+	 <!DOCTYPE html>
+	 <html>
+	 <head>
+	 	<style>
+	 		label {
+	 			width:180px;
+	 			clear:left;
+	 			text-align:right;
+	 			padding-right:10px;
+
+
+	 		}
+
+	 		h1 {
+	 			text-align: center;
+	 			color:green;
+	 		}
+
+	 		input, label {
+	 			float:left;
+	 		}
+	 		body{ background-color: lightblue;
+	 		}
+
+	 	</style>
+	 	<title>student registration</title>
+	 	<script   src="https://code.jquery.com/jquery-2.2.3.min.js"   integrity="sha256-a23g1Nt4dtEYOj7bR+vTu7+T8VP13humZFBJNIYoEJo="   crossorigin="anonymous"></script>
+	 </head>
+	 <body>
+	 	<h1> STUDENT REGISTRATION  FORM</h1>
+	 	<form id="frm"  novalidate>
+	 		<label>NAME</label> <input type="text" name="name" id="name" > </input></br> </br>
+	 		<label>AGE</label><input type="number" name="dob" id="dob"  ></input></br></br>
+	 		<label>Father's Name</label><input type="text"  name="fname" id="fname" ></input></br></br>
+	 		<label>CLASS</label><input type="text" name="std" id="std"/> </br></br>
+	 		<label>SECTION</label><input type="text" id="sec" name="section"</input></br></br>
+	 		<label>Class Teacher</label><input type="text" id="ct" name="ct" ></input>
+	 	</br></br>
+	 	<label>Address</label><textarea name="text"></textarea> </br></br>
+
+	 	<center><input type="Button" value="Submit" onclick="register();"/> </center> 
+	 	<div id="info1"></div>
+	 	
+
+	 </form>
+
+	 <script>
+	 	function register(){
+	 		var formData = JSON.stringify($("#frm").serializeArray());
+
+	 		console.log(formData);
+
+	 		$.ajax({
+	 			type: 'POST',
+	 			url: "http://localhost:4000/registration",
+	 			headers: {
+	 				"Content-type":"application/json"
+	 			},
+	 			data: formData,
+	 		}).done(function(data) { 
+	 			//var obj = JSON.parse(data);
+	 			var obj =$.parseJSON;
+
+              //  document.getElementById("info1").innerHTML=obj.name;
+	 		console.log(obj);
+	 		alert("submit success");
+
+	 		});
+
+	 	}
+	 </script>
+	</body>
+	</html>
